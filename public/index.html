@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Social Radar</title>
+  <meta name="description" content="Post to Instagram, Facebook, YouTube, TikTok and LinkedIn from one composer, with ChatGPT, analytics, stories and comments.">
+  <meta name="theme-color" content="#161316">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23231a26'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23e8609c' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%232ad4d9' stroke-width='2'/%3E%3Cpath d='M16 16 L23 9' stroke='%23e0a83a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div id="banner" class="banner" hidden></div>
+
+  <div class="shell" id="shell">
+    <aside class="col side" id="slot-chatgpt" aria-label="ChatGPT"></aside>
+
+    <main class="col center">
+      <section class="panel console" id="console">
+        <header class="console-head">
+          <div>
+            <div class="eyebrow">Acme Studio · social console</div>
+            <h1>Social Radar</h1>
+          </div>
+          <div class="head-right">
+            <div id="googleChip"></div>
+            <button class="btn sm" id="accountsBtn" type="button"></button>
+            <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings"></button>
+            <span class="local-note" id="syncNote"></span>
+          </div>
+        </header>
+        <div id="composer"></div>
+      </section>
+
+      <section class="panel summary" id="summary" aria-label="Performance summary"></section>
+      <section class="panel table-panel" id="postsPanel" aria-label="Posts from Social Radar"></section>
+
+      <div class="duo">
+        <div class="slot" id="slot-stories" aria-label="Stories and reshare"></div>
+        <div class="slot" id="slot-comments" aria-label="Comments"></div>
+      </div>
+      <div class="slot" id="slot-inbox" aria-label="Inbox"></div>
+      <div class="slot" id="slot-linktree" aria-label="Linktree"></div>
+    </main>
+
+    <aside class="col side" id="slot-posts" aria-label="Recent posts"></aside>
+  </div>
+
+  <div id="floatLayer" class="float-layer"></div>
+  <nav id="orbDock" class="orb-dock" aria-label="Minimised cards" hidden></nav>
+  <div id="solo" class="solo" hidden></div>
+  <div id="backdrop" class="backdrop" hidden></div>
+
+  <dialog id="accounts" class="dlg wide">
+    <div class="dlg-body">
+      <div class="row"><h2 class="grow">Accounts</h2><button class="x" id="accountsClose" aria-label="Close">✕</button></div>
+      <div id="accountsBody"></div>
+    </div>
+  </dialog>
+
+  <dialog id="settings" class="dlg">
+    <form method="dialog" class="dlg-body" id="settingsForm">
+      <h2>Settings</h2>
+      <label class="f"><span>Brand voice for ChatGPT <em class="tag">who you are and how you sound</em></span><textarea name="brandVoice" rows="4" placeholder="Acme Studio — a sample retail brand. Friendly, confident, premium tone…"></textarea></label>
+      <label class="f"><span>Hashtags to always include <em class="tag">ChatGPT keeps these</em></span><input name="defaultHashtags" placeholder="#AcmeStudio #NewIn"></label>
+      <label class="f inline"><input type="checkbox" name="autoDelete"> Delete uploaded media from storage once every platform has it</label>
+      <label class="f"><span>ChatGPT chat to use <span class="muted xs">(optional — paste a chat link like https://chatgpt.com/c/…; leave empty for a new chat each time)</span></span><input class="inp" name="gptChatUrl" type="url" placeholder="https://chatgpt.com/c/..." autocomplete="off"></label>
+      <label class="f inline desktop-only"><input type="checkbox" name="autoSend"> Windows app: send prompts to ChatGPT straight away</label>
+      <details class="owner-box">
+        <summary>Server &amp; owner settings</summary>
+        <label class="f"><span>App passcode <em class="tag">only if APP_PASSCODE is set on the server</em></span><input name="passcode" type="password" autocomplete="off"></label>
+        <label class="f"><span>Google OAuth Client ID <em class="tag">overrides GOOGLE_CLIENT_ID</em></span><input name="googleClientId" placeholder="…apps.googleusercontent.com"></label>
+      </details>
+      <div class="dlg-foot">
+        <span class="grow"></span>
+        <button value="cancel" class="btn ghost">Cancel</button>
+        <button value="save" class="btn primary" id="saveSettings">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

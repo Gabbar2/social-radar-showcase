@@ -1,0 +1,32 @@
+{
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 300
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/l",
+      "destination": "/api/links?view=1"
+    },
+    {
+      "source": "/links",
+      "destination": "/api/links?view=1"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "social-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Post to Instagram, Facebook, YouTube, TikTok and LinkedIn from one composer, with ChatGPT, analytics, stories and comments.",
+  "scripts": {
+    "dev": "node server.js",
+    "demo": "DEMO=1 node server.js",
+    "build:vendor": "esbuild vendor-entry.mjs --bundle --format=esm --platform=browser --minify --outfile=public/vendor/blob-client.js"
+  },
+  "dependencies": { "@vercel/blob": "^2.8.1" },
+  "devDependencies": { "esbuild": "^0.25.0" },
+  "engines": { "node": ">=18" }
+}
